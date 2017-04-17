@@ -1,0 +1,114 @@
+﻿@model E_Ticaret.Entity.Models.Customer
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="sub-categories">
+    <div class="categories-path">
+        <div class="container">
+            <ul>
+                <li><a href="/Anasayfa">ANASAYFA</a></li>
+                <li>HESABIM</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="full-content">
+    <div class="container">
+        <h2>Hesabım</h2>
+        <hr>
+
+        <ul class="tab-style customerTab">
+            <li class="active"><a href="/KisiselBilgilerim/@Model.CustomerID">Kişisel Bilgilerim</a></li>
+            <li><a href="/SiparisBilgilerim/@Model.CustomerID">Sipariş Bilgilerim</a></li>
+
+        </ul>
+    </div>    
+</section>
+
+@using (Html.BeginForm("UpdatePassword", "Customer", FormMethod.Post))
+{
+    <section class="account-info">
+        <div class="container">
+            <header>
+                <h2>Hesap Bilgilerim</h2>
+            </header>
+            <div class="half">
+                <h4>E-Posta</h4>
+                <p>@Model.Email</p>
+            </div>
+        
+                <input type="hidden" name="CustomerID" value=@Model.CustomerID>
+                <input type="hidden" name="Email" value=@Model.Email>
+
+
+                <div class="half">
+                    <h4>Şifre</h4>
+                    <p>-</p>
+                    <div class="update-password" style="display: block;">
+                        <div class="form-row">
+                            <label for="old-pass">Eski Şifreniz</label>
+                            <input type="password" id="oldPassword" class="ncFormInputStyle" name="Password"  autocomplete="off" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="new-pass">Yeni Şifreniz</label>
+                            <input type="password" class="ncFormInputStyle" name="newPassword" required>
+
+
+                        </div>
+                        <div class="form-row">
+                            <label for="new-pass-repeat">Yeni Şifreniz Tekrar</label>
+                            <input type="password" class="ncFormInputStyle" name="newPassword2" required>
+                        </div>
+                        <input type="submit" class="btn grey" value="Güncelle">
+                    </div>
+                </div>
+            
+        
+        </div>
+    </section>
+}
+
+<hr>
+
+@using (Html.BeginForm("UpdateInfo", "Customer", FormMethod.Post))
+{
+
+    <section class="personal-info">
+        <div class="container">
+            <header>
+                <h2>Kişisel Bilgilerim</h2>
+            </header>
+            <div class="half">
+                <div class="form-row">
+                    <label for="name">Ad</label>
+                    <input type="text" value="@Model.Name" name="Name"  autocomplete="off" required>
+                </div>
+                <div class="form-row">
+                    <label for="surname">Soyad</label>
+                    <input type="text" value="@Model.Surname" name="Surname"  autocomplete="off" required>
+                </div>
+
+            </div>
+            <div class="half">
+                <div class="form-row">
+                    <label for="mobile">Cep Telefonu</label>
+                    <input type="text" value="@Model.Phone" name="Phone"  autocomplete="off" required>
+                </div>
+                <div class="form-row">
+                    <label for="address">Adres</label>
+                    <input type="text" value="@Model.Address" name="Address" autocomplete="off" required>
+                </div>
+
+            </div>
+            <input type="hidden" name="CustomerID" value=@Model.CustomerID>
+            <div class="full">
+                <input type="submit" class="btn grey" value="Bilgilerimi Güncelle">
+            </div>
+        </div>
+    </section>
+}
+
+

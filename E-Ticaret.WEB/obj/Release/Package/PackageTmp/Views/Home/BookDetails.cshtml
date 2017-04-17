@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "BookDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model E_Ticaret.Entity.Models.ViewModel.ViewBookForDetails
+
+
+
+
+<section class="catPagesCont clearfix">
+    <div id="catPageContent" class="catPagesContCenter">
+        <div class="side-2"></div>
+
+
+        <section class="sub-categories">
+            <div class="categories-path">
+                <div class="container">
+                    <ul>
+                        <li><a href="/Anasayfa">Anasayfa</a></li>
+                        <li><a href="/Kategori/@Model.CategoryID">@Model.CategoryName</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <form role="form" method="post">
+
+            <section class="product-details">
+
+                <div class="head-cta">
+                    <div class="container">
+                        <div class="product-details"></div>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="head">
+                        <div class="col-half">
+                            <h1 class="product-name">@Model.BookName</h1>
+                        </div>
+
+                        <div class="col-half">
+                        </div>
+                    </div>
+
+
+                    <div class="all-details">
+
+                        <div class="images">
+                            <figure class="big-image">
+                                <img style="max-height:400px;" alt="@Model.BookName" src="@Model.PhotoUrl">
+                            </figure>
+                        </div>
+
+                        <div class="specs">
+
+                            <div class="author">
+                                Yazar:
+                                <h2>
+                                    <a href="/Yazar/@Model.WriterID">
+                                        <span class="name">@Model.WriterName</span>
+                                    </a>
+                                </h2>
+                            </div>
+
+                            <div class="author">
+                                Yayınevi :
+                                <h2>
+                                    <a>
+                                        <span class="name" id="publisherName">@Model.Publisher</span>
+                                    </a>
+                                </h2>
+                            </div>
+
+
+                            <div class="spec-box">
+                                <div id="priceDiv" class="book-active">
+                                    <div class="prices">
+                                        <div class="full">
+                                            <div class="price">
+                                                <span id="salePrice">@Model.Price</span>
+                                                <span class="price-currency"> TL</span>
+                                            </div>
+
+                                            <div class="quantity">
+                                                <input style="font-size:18px"
+                                                       type="number"
+                                                       class="form-control"
+                                                       value="1"
+                                                       min="1"
+                                                       max="10"
+                                                       name="BookCount" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="BookID" value="@Model.BookID" />
+                                    <input type="hidden" name="PhotoUrl" value="@Model.PhotoUrl" />
+                                    <input type="hidden" name="BookName" value="@Model.BookName" />
+                                    <input type="hidden" name="Price" value="@Model.Price" />
+                                    <div class="cta">
+                                        <button class="btn green">SEPETE EKLE</button>
+                                    </div>
+
+
+
+                                </div>
+
+                                <ul class="pluses">
+                                    <li class="bold hide-element"></li>
+                                    <li class="bold"><i class="glyphicon glyphicon-circle-arrow-right"></i>50 TL ve üzeri alışverişlerinizde kargo bedava!</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </form> 
+        <section class="full-content" itemscope="" itemtype="http://schema.org/Book">
+            <div class="container">
+                <div class="product-description">
+                    @(new HtmlString(Model.BookSubject.ToString()))
+                </div>
+            </div>
+        </section>
+
+    </div>
+</section>

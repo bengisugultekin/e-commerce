@@ -1,0 +1,134 @@
+﻿@model  E_Ticaret.Entity.Models.ViewModel.ViewOrderDetails
+@{
+    ViewBag.Title = "CompletedOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Siparişiniz tamamlanmıştır.</h2>
+
+
+@{
+    double Total = 0.0;
+    <section class="order-details">
+        <div class="container">
+            <div class="order-summary">
+                <div class="half">
+                    <div class="os-row">
+                        <div class="label">Sipariş Tarihi:</div>
+                        <div class="statement">@Model.OrderDate</div>
+                    </div>
+                    <div class="os-row">
+                        <div class="label">Sipariş Durumu:</div>
+
+                        <div class="statement">
+                            Siparişiniz hazırlanıyor.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="half">
+                    <div class="os-row bt">
+                        <div class="label">KDV Dahil Toplam Tutar:</div>
+                        <div class="statement text-right">@Model.TotalBill TL </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="order-head">
+                <div class="product">
+                    <h5>ÜRÜN</h5>
+                </div>
+                <div class="state">
+                    <h5>SİPARİŞ DURUMU</h5>
+                </div>
+                <div class="single-price">
+                    <h5>BİRİM FİYAT</h5>
+                </div>
+                <div class="price">
+                    <h5>TOPLAM FİYAT</h5>
+                </div>
+
+            </div>
+            @foreach (var item in Model.ShoppingBag)
+            {
+                <div class="order-row">
+                    <div class="product">
+
+                        <figure>
+                            <img src="@item.PhotoUrl" alt="@item.BookName">
+                        </figure>
+                        <p class="product-name"><a href="/Kitap-Bilgileri/@item.BookID">@item.BookName</a></p>
+                    </div>
+                    <div class="state" data-header="Sipariş Durumu">
+
+                        <p>Adet : @item.BookCount</p>
+                        <p>Hazırlanıyor.</p>
+
+
+                        <p>@item.BookCount ürünün tahmini kargoya veriliş tarihi: (@(Model.OrderDate.AddDays(3).ToShortDateString()))</p>
+
+                    </div>
+                    <div class="single-price" data-header="Birim Fiyat">
+                        <p class="s-price">@item.Price TL </p>
+                    </div>
+                    <div class="price" data-header="Toplam">
+                        <p>@(item.Price * item.BookCount) TL</p>
+                        @{ 
+                            Total = item.Price * item.BookCount;
+                        }
+                       
+                    </div>
+                </div>
+            }
+
+
+            <div class="extras-row">
+                <div class="half">
+                    <div class="check">
+                    </div>
+                    <div class="product">
+                        <figure><i class="glyphicon glyphicon-inbox"></i></figure>
+                        <p class="extra-description"><span>Ups Kargo</span></p>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="price">
+                        @{
+                            double kargo = 0;
+                            if (Total >= 50) { kargo = 0.00; }
+                            else { kargo = 4.99; }
+                            <p class="product-price">@kargo TL</p>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="address">
+                <h4>TESLİMAT ADRESİ</h4>
+                <div class="row">
+                    <div class="half">
+
+                        <p>@Model.ShippingAddress, @Model.Name @Model.Surname</p>
+                    </div>
+                    <div class="half">
+                        <p>Cep Telefon : @Model.Phone</p>
+                    </div>
+                </div>
+                <h4>FATURA ADRESİ</h4>
+                <div class="row">
+                    <div class="half">
+                        <p>@Model.ShippingAddress, @Model.Name @Model.Surname</p>
+                    </div>
+                    <div class="half">
+                        <p>Cep Telefon : @Model.Phone</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+}

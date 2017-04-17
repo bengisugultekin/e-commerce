@@ -1,0 +1,99 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<E_Ticaret.Entity.Models.ViewModel.ViewBookForCategory>
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <p class="lead">Kategoriler > @ViewBag.CategoryName</p>
+    <div class="row">
+        <div class="col-md-3">
+
+            <div class="list-group">
+                @foreach (var item in ViewBag.Category)
+                {
+                    <a href="/Kategori/@item.CategoryID" class="list-group-item">@item.CategoryName</a>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class="cell col-lg-3">
+                        <div class="content">
+                            <a title="resim" href="/Kitap-Bilgileri/@item.BookID">
+                                <figure>
+                                    <img src="@item.PhotoUrl" alt="resim">
+                                </figure>
+                            </a>
+
+                            <div class="book-name">
+                                <a title="" href="/Kitap-Bilgileri/@item.BookID" class="item-name">
+                                    @{
+                                        var strName = item.BookName;
+                                        if (strName.Length > 22)
+                                        {
+                                            strName = strName.Substring(0, 19) + "...";
+                                        }
+
+                                        <h3 id="trimBook">@strName</h3>
+
+                                    }
+
+
+                                </a>
+                                @{
+                                    var strWriterName = item.WriterName;
+                                    if (strWriterName.Length > 22)
+                                    {
+                                        strWriterName = strWriterName.Substring(0, 19) + "...";
+                                    }
+
+                                    <a href="/Yazar/@item.WriterID" id="trimWriter" class="who">@strWriterName</a>
+
+                                }
+                                <div class="media-type">
+                                    @{
+                                        var strPublisher = item.Publisher;
+                                        if (strPublisher.Length > 22)
+                                        {
+                                            strPublisher = strPublisher.Substring(0, 19) + "...";
+                                        }
+
+                                        <span id="trimPublisher" class="who">@strPublisher</span>
+
+                                    }
+
+
+                                </div>
+                            </div>
+                            <br />
+
+                            <span class="price">@item.Price TL </span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- Pager -->
+            <div class="container" style="width:867px;">
+                <div class="pager-container">
+                    <ul class="pager">
+                        <li class="next">
+                            @Html.PagedListPager(Model, page => Url.Action("Category", new { page }))
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

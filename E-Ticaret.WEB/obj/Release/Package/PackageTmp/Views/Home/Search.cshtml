@@ -1,0 +1,104 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IPagedList<E_Ticaret.Entity.Models.ViewModel.ViewForHome>
+
+<div id="catPageContent" class="catPagesContCenter">
+
+    <section class="sub-categories">
+        <div class="categories-path">
+            <div class="container">
+                <ul>
+                    <li><a href="/Anasayfa">ANASAYFA</a></li>
+                    <li>Arama Sonuçları</li>
+                </ul>
+            </div>
+        </div>
+        <section class="full-content">
+            <div class="container">
+                <h2>"@Session["search"]" için Arama Sonuçları</h2>
+            </div>
+        </section>
+    </section>
+
+    @{
+        if (Model.Count != 0)
+        {
+            <div class="container">
+                <div class="pager-container">
+                    <ul class="pager">
+                        <li class="next">
+                            @Html.PagedListPager(Model, page => Url.Action("Search", new { page }))
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+
+                <section class="shelf">
+                    <div id="container" class="container">
+                        <div class="list-cell">
+                            <figure>
+                                <a href="/Kitap-Bilgileri/@item.BookID" class="item-name">
+                                    &lt;
+                                    <img src="@item.PhotoUrl" alt="Dersimiz Cinayet ">
+                                    
+                                </a>
+                            </figure>
+                            <div class="details">
+                                <div class="summary">
+                                    <a href="/Kitap-Bilgileri/@item.BookID" class="item-name"><h3>@item.BookName</h3></a>
+                                    
+                                    <hr>
+                                    <a href="/Yazar/@item.WriterID" class="who">@item.WriterName</a>
+
+                                    <p>
+                                        Kitap - İnce Kapak
+                                    </p>
+                                    <a href="#" class="who mb10">@item.Publisher</a>
+                                    <br>
+
+                                </div>
+                                <div class="prices">
+                                    <span class="old-price">&nbsp;</span>
+                                    <span class="price">@item.Price TL</span>
+                                    <span class="discount-category">&nbsp;</span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="PhotoUrl" value="@item.PhotoUrl" />
+                            <input type="hidden" name="BookID" value="@item.BookID" />
+                            <input type="hidden" name="BookCount" value="1" />
+                            <div class="cta">
+                                <ul>                                                                     
+                                    <li><a href="/Home/ShoppingChart/@item.BookID" class="btn green">SEPETE EKLE</a></li>
+                                    <li><a href="/Kitap-Bilgileri/@item.BookID" class="btn white-border">DETAYA GİT</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+
+            <div class="container">
+                <ul class="pager bottom">
+                    <li class="next">
+                        @Html.PagedListPager(Model, page => Url.Action("Search", new { page }))
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="container">
+                <article class="catpagenoproduct searchNotProText">Aradığınız kritere uygun ürün bulunamadı.</article>
+            </div>
+        }
+    }
+    
+   
+</div>
+

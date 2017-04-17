@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<E_Ticaret.Entity.Models.Custom>
+
+<section class="sub-categories">
+    <div class="categories-path">
+        <div class="container">
+            <ul>
+                <li><a href="/Anasayfa">ANASAYFA</a></li>
+                <li>HESABIM</li>
+            </ul>
+        </div>
+    </div>
+</section>
+@{
+<section class="full-content">
+    <div class="container">
+        <h2>Hesabım</h2>
+        <hr>
+
+        <ul class="tab-style customerTab">
+            <li><a href="/KisiselBilgilerim/@ViewBag.ID">Kişisel Bilgilerim</a></li>
+            <li class="active"><a href="/SiparisBilgilerim/@ViewBag.ID">Sipariş Bilgilerim</a></li>
+
+        </ul>
+
+        @if (Model.Count != 0)
+        {
+            <div class="orders-list">
+                <div class="orders-list-head" id="dvOrderHead" style="display: block;">
+                    <div class="date">
+                        <h5>SİPARİŞ TARİHİ</h5>
+                    </div>
+                    <div class="order-code">
+                        <h5>SİPARİŞ KODU</h5>
+                    </div>
+                    <div class="price">
+                        <h5>TOPLAM TUTAR</h5>
+                    </div>
+                    <div class="order-condition">
+                        <h5>SİPARİŞ DURUMU</h5>
+                    </div>
+                </div>
+
+               
+
+                @foreach (var item in Model)
+                {
+                    <div class="orders-list-row">
+                        <div class="date">
+                            <h5>@item.OrderDate.ToShortDateString() </h5>
+                        </div>
+                        <div class="order-code">
+                            <h5>WXI000@(item.CustomID)</h5>
+                        </div>
+                        <div class="price">
+                            <h5>@item.TotalBill TL</h5>
+                        </div>
+
+                        <div class="order-condition">
+                           @{
+                               if (DateTime.Today >= item.OrderDate.AddDays(3))
+                               {
+                                <p>Siparişiniz kargoya verildi / Tamamlandı</p>
+
+                               }
+                               else
+                               {
+                                <p>Siparişiniz hazırlanıyor.</p>
+                               }
+                        }
+
+
+                        </div>
+                        <div class="cta">
+                            <ul>
+                                <li><a href="/SiparisDetayi/@item.CustomID">SİPARİŞ DETAYI</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                }              
+
+        </div>
+        }
+        else if(Model.Count == 0)
+        {
+            <section class="help">
+                <div class="container">
+                    <p class="text">Siparişiniz bulunmamaktadır.</p>
+                </div>
+            </section>
+        }          
+    </div>
+</section>
+
+}

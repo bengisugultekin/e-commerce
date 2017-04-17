@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ETicaretDB-Web.config Connection String" description="ETicaretDB Connection String used in web.config by the application to access the database." defaultValue="data source=bengisu.database.windows.net;initial catalog=LilaKitapeviDB;user id=beng;password=1qa2ws3ed.,;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Bengisu\\Source\\Repos\\e-commerce\\E-Ticaret\.WEB\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ETicaretDB']/@connectionString" />
+  </parameter>
+</parameters>

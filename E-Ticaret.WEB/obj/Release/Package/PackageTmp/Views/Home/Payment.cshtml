@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Odeme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model E_Ticaret.Entity.Models.ViewModel.ViewForPayment
+
+<style>
+    section.checkout .checkout-cart-details ul li figure img {
+        max-height: 64px;
+        max-width: 41px;
+    }
+
+    section.checkout .checkout-cart-details ul li .detail {
+        font-family: 'Poppins';
+    }
+
+        section.checkout .checkout-cart-details ul li .detail .product-name {
+            font-family: 'Poppins';
+        }
+
+        section.checkout .checkout-cart-details ul li .detail .product-type {
+            font-family: 'Poppins';
+            color: #7d7d7d;
+        }
+</style>
+<section class="checkout tabbedSection">
+    <div class="container">
+
+        <header>
+            <h2>Ödeme</h2>
+        </header>
+
+
+        <div class="checkout-details">
+
+            <div class="row">
+                @using (Html.BeginForm("Update", "Home", FormMethod.Post))
+                {
+                    <div id="billingAddressList">
+                        <div id="billingList">
+                            <header>
+                                <h2>Kargo Teslim Adresi</h2>
+                            </header>
+                            <div id="billingAddress">
+                                <div class="address-cell bill-address-cell" id="billing-address-cell">
+                                    <div class="address-detail">
+                                        <div class="text">
+                                            <input type="text" name="shippingAddress" value="@Model.Address" />
+                                            <hr>
+                                            <p>T. @Model.Phone</p>
+                                        </div>
+                                        <div class="cta">
+                                            <input type="submit" class="btn white-border" value="GÜNCELLE">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+
+        <div id="orderSummary">
+            <div class="checkout-cart-details">
+                <div class="inner">
+                    @{
+                        int count = 0;
+                        double Total = 0.0;
+                        foreach (var item in Model.ShoppingList)
+                        {
+                            count += item.BookCount;
+                            Total += item.TotalPrice;
+                        }
+                    }
+                    <h3>Toplam @count ürün</h3>
+
+                    <ul>
+                        @{
+                            foreach (var item in Model.ShoppingList)
+                            {
+                                <li>
+                                    <figure>
+                                        <img class="image" src="@item.PhotoUrl" alt="@item.BookName">
+                                    </figure>
+                                    <div class="detail">
+                                        <p class="product-name"><a href="/Kitap-Bilgileri/@item.BookID" title="">@item.BookName</a></p>
+                                        <p class="product-type">Medya Tipi: İnce Kapak / @item.BookCount ADET </p>
+                                        <p class="product-price"><a href="/Kitap-Bilgileri/@item.BookID">@item.Price TL</a></p>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        <li id="CargoPrice">
+                            <figure>
+                                <i class="glyphicon glyphicon-inbox"></i>
+                            </figure>
+                            <div class="detail">
+                                <p class="product-name">Ups Kargo</p>
+
+                                @{
+                                    double kargo = 0;
+                                    if (Total >= 50) { kargo = 0.00; }
+                                    else { kargo = 4.99; }
+                                    <p class="product-price">@kargo TL</p>
+                                }
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="price">
+                        <p class="new">@(Total + kargo) TL</p>
+                    </div>
+                    <form role="form" method="post">
+                        <div class="cta">
+                            <a class="btn white-border" href="/Sepetim">SEPETİ DÜZENLE</a>
+                            <a class="btn white-border" href="/Anasayfa">ALIŞVERİŞE DEVAM ET</a>
+                            <a class="btn white-border red" role="button" onclick="activateButton()">SİPARİŞİ TAMAMLA</a>
+                            <button id="hiddenBtn" type="submit" style="display: none;"></button>
+
+
+                            <input type="hidden" value="@Total" name="Total" />
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+    function activateButton() {
+        $('#hiddenBtn').click();
+    };
+</script>

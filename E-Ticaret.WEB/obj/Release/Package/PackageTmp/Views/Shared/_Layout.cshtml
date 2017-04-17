@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  
+    <meta charset="utf-8">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Lila Kitapevi</title>
+
+    <link href="~/Content/CSS/Home/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Home/shop-homepage.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet"  type="text/css" >
+    <link href="~/Content/CSS/Home/External.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/CSS/Home/Site.css")" rel="stylesheet" type="text/css" /> 
+    
+    
+
+    <style>
+        header .category-tab i {
+            font-size: 20px;            
+            display: block;
+            cursor: pointer;            
+            padding-top: 18px;
+            padding-left: 25px;
+            color: #6666ff;
+            font-style:normal;
+            font-weight: 700;
+            font-family: 'Poppins';
+        }
+
+        header .search-bar #searchIcon {
+            font-size: 18px;
+            font-family: 'Poppins';
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <figure class="logo">
+            <a href="/Anasayfa">
+                <img src="~/Images/vector_colourful_book_logo.png" alt="logo">
+            </a>
+           
+        </figure>
+
+        <div class="head-menu logged-in">
+            <ul>
+                @if (Session["email"] != null)
+                {
+                    <li class="giris">
+                        <a href="/Hesabım">HESABIM</a>
+                    </li>
+
+                    <li class="separator"></li>
+                    
+                    <li class="giris">
+                        <a href="/Cikis">ÇIKIŞ</a>
+                    </li>
+
+                    <li class="separator"></li>
+                    
+                    <li class="sepet">
+                        <a href="/Sepetim">SEPETİM</a>
+                    </li>
+
+                }
+                else
+                {
+
+                    <li></li>
+                    <li></li>
+
+                    <li class="giris">
+                        <a href="/Giriş">ÜYE GİRİŞİ</a>
+                    </li>
+
+                    <li class="separator"></li>
+
+                    <li class="sepet">
+                        <a href="/Sepetim">SEPETİM</a>
+                    </li>
+                }
+
+
+
+            </ul>
+        </div>
+        <div class="category-tab">
+            <a href="/Anasayfa"><i>LİLA KİTAPEVİ</i></a>
+        </div>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+        {
+            <div class="search-bar logged-in">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="text" name="search" class="searchInput" maxlength="60" placeholder="HANGİ ÜRÜNÜ ARIYORSUN?" autocomplete="off">                
+                <input type="submit" value="ARA" id="searchIcon">
+                
+                <div class="search-suggests">
+
+                    <ul class="product"></ul>
+                    <ul class="category"></ul>
+                    <ul class="author"></ul>
+                    <ul class="brand"></ul>
+                </div>
+            </div>
+        }       
+
+    </header>
+    <br />
+    <br />
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <div class="container">
+        
+        <footer>
+            @*<div class="row">
+                <div class="col-lg-3 ">
+                    <a href="#">Hakkımızda</a>
+                    <br />
+                    <a href="#">İletişim</a>
+                    <br />
+                    <a href="#">Giriş</a>
+                    <br />
+                </div>
+            </div>*@
+            <br />
+            <div class="row">
+                <div class="col-lg-3">
+                    <p>Copyright &copy; Bengisu Gültekin @DateTime.Now.Year</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    
+</body>
+</html>
+
+
+
+
+

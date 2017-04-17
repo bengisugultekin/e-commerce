@@ -1,0 +1,48 @@
+﻿@model E_Ticaret.Entity.Models.Customer
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="user-landing">
+    <div class="container">
+        <div class="half">
+            <div class="content" style="height: 557px;">
+                <h3>Üye Girişi</h3>
+                <hr>
+                <p>Lila Kitap Evi’ne Hoşgeldiniz!</p>
+
+                @using (Html.BeginForm())
+                {
+                    <div class="form-row">
+
+                        <input autofocus="autofocus" data-val="true" data-val-email="Hatalı E-posta" data-val-required="E-Posta adresi zorunlu" id="EmailField" maxlength="500" name="Email" placeholder="E-Posta Adresi" title="Sisteme kayıtlı olan mail adresinizi yazınız!" type="text" autocomplete="off" style="font-weight:500">
+                    </div>
+                    <div class="form-row">
+
+                        <input id="PasswordField" maxlength="40" name="Password" placeholder="Şifre" title="Lütfen şifrenizi giriniz!" type="password" autocomplete="off" style="font-weight:500">
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="form-row buttons">
+                        <input class="btn green btn-arrow-login" type="submit" name="login_btn" id="login_btn" value="GİRİŞ YAP">
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="half">
+            <div class="content" style="height: 557px;">
+                <h3>Üye Ol</h3>
+                <hr>
+                <p class="login-bottom-head">Üye değil misiniz?</p>
+                <p class="login-bottom-head">Hemen üye olun, Lila Kitap Evi avantajlarından faydalanın!</p>
+
+                <div class="form-row">
+                    <input class="btn green btn-arrow-login" type="button" value="ÜYE OLMAK İSTİYORUM" onclick="window.location.href = '/UyeOl';"> @*değişecek kısalacak*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,42 @@
+﻿@model  List<E_Ticaret.Entity.Models.ViewModel.ViewForHome>
+
+@{
+    ViewBag.Title = "Writer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <p class="lead">Yazar > @ViewBag.WriterName</p>
+    <br />    
+    <div class="col-lg-9">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="cell col-lg-3">
+                    <div class="content">
+                        <a title="resim" href="/Kitap-Bilgileri/@item.BookID">
+                            <figure>
+                                <img src="@item.PhotoUrl" alt="resim">
+                            </figure>
+                        </a>
+
+                        <div class="book-name">
+                            <a title="" href="/Kitap-Bilgileri/@item.BookID" class="item-name">
+                                <h3>@item.BookName</h3>
+                            </a>
+                            <a href="/Yazar/@item.WriterID" class="who">@item.WriterName</a>
+                            <div class="media-type">
+                                <span class="who">@item.Publisher</span>
+                            </div>
+                        </div>
+                        <br />
+
+                        <span class="price">@item.Price TL </span>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

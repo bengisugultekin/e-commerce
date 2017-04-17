@@ -1,0 +1,175 @@
+﻿@model List<E_Ticaret.Entity.Models.Product>
+@{
+    ViewBag.Title = "Sepetim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    input[type=checkbox] {
+        -webkit-appearance: checkbox;
+    }
+</style>
+<div id="cartList">
+    <section class="basket-container clearfix">
+        @using (Html.BeginForm("Delete", "Home", FormMethod.Post,
+                                    new { encType = "multipart/form-data", name = "myform" }))
+        {
+            <section class="cart">
+                <div class="container">
+                    <header>
+                        <h2>Sepetim</h2>
+                    </header>
+                    @{
+                        if (Model != null)
+                        {
+                            <div class="cart-head">
+                                <div class="half">
+
+                                    <div class="">
+                                        <div class="">
+                                            <input type="checkbox" id="checkall" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="product">
+                                        <h5>ÜRÜN</h5>
+                                    </div>
+                                </div>
+                                <div class="half">
+                                    <div class="quantity">
+                                        <h5>   ADET</h5>
+                                    </div>
+                                    <div class="single-price">
+                                        <h5>   BİRİM FİYAT</h5>
+                                    </div>
+                                    <div class="price">
+                                        <h5>   TOPLAM FİYAT</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            for (int i = 0; i < Model.Count(); i++)
+                            {
+                                <div class="product-row">
+                                    <div class="half">
+
+                                        <div class="check">
+                                            <div id="checkboxes">
+
+                                                @Html.HiddenFor(it => it[i].BookID)
+                                                @Html.EditorFor(it => it[i].Checked)
+
+
+                                                @* Ya da böyle
+                                                    @Html.CheckBoxFor(it => it[i].Checked)
+                                                    @Html.LabelFor(it => it[i].Checked, Model[i].BookID)*@
+                                            </div>
+                                        </div>
+
+                                        <div class="product">
+                                            <figure>
+                                                <img src="@Model[i].PhotoUrl" alt="@Model[i].BookName">
+                                                @Html.HiddenFor(it => it[i].PhotoUrl)
+                                            </figure>
+                                            <p class="product-name"><a href="/Kitap-Bilgileri/@Model[i].BookID">@Model[i].BookName</a></p>
+                                            @Html.HiddenFor(it => it[i].BookName)
+                                            <h5 class="product-cat">Medya Tipi: İnce Kapak</h5>
+                                        </div>
+                                    </div>
+                                    <div class="half">
+                                        <div class="detail">
+
+                                        </div>
+                                        <div class="price">
+                                            <p class="text-center">@Model[i].BookCount</p>
+                                            @Html.HiddenFor(it => it[i].BookCount)
+                                        </div>
+                                        <div class="single-price">
+                                            <p class="sale"></p>
+                                            <p class="s-price">@Model[i].Price TL</p>
+                                            @Html.HiddenFor(it => it[i].Price)
+                                        </div>
+                                        <div class="price">
+                                            <p>@(Model[i].BookCount * Model[i].Price) TL</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="cta-row">
+                                <div class="product-selected">
+                                    <ul>
+                                        <li></li>
+                                        <li>
+                                            <input class="deleteBtn" type="submit" value="SİL" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cart-sum">
+                                    @{
+                                        double Total = 0.0;
+                                        foreach (var item in Model)
+                                        {
+                                            Total += item.TotalPrice;
+                                        }
+                                    }
+                                    <h4>@Total TL</h4>
+
+
+                                    <a href="/Odeme" role="button" class="btn green">
+                                        SATIN AL
+                                    </a>
+                                </div>
+                            </div>
+
+
+                                        }
+                                        else
+                                        {
+                                            <h1 style="margin-left:300px;">SEPETİNİZDE ÜRÜN BULUNMUYOR!</h1>
+                                            <section class="help">
+                                                <a class="btn grey" href="/Anasayfa">ALIŞVERİŞE BAŞLA</a>
+                                            </section>
+                                        }
+                    }
+
+
+                </div>
+            </section>
+                                        }
+    </section>
+</div>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+
+    function toggleChecked(status) {
+        $("#checkboxes input").each(function () {
+            // Set the checked status of each to match the
+            // checked status of the check all checkbox:
+            $(this).prop("checked", status);
+        });
+    }
+
+    $(document).ready(function () {
+
+        // Grab a reference to the check all box:
+        var checkAllBox = $("#checkall");
+
+        //Set the default value of the global checkbox to true:
+        checkAllBox.prop('checked', false);
+
+        // Attach the call to toggleChecked to the
+        // click event of the global checkbox:
+        checkAllBox.click(function () {
+            var status = checkAllBox.prop('checked');
+            toggleChecked(status);
+        });
+    });
+</script>
+
+
+

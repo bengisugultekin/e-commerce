@@ -1,0 +1,129 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<E_Ticaret.Entity.Models.ViewModel.ViewForHome>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Kategoriler</p>
+            <div class="list-group">
+                @{
+
+                    foreach (var item in ViewBag.Categories)
+                    {
+                        <a href="/Kategori/@item.CategoryID" class="list-group-item">@item.CategoryName</a>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row carousel-holder">
+                <div class="col-md-12">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img class="slide-image" src="~/Images/askin_adi_siirv1-slider.jpg" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="slide-image" src="~/Images/stefan-zweig.jpg" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="slide-image" src="~/Images/yuzde50-slider.jpg" alt="">
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            
+                <div class="highlight" style="font-size:17px!important;color:#ffffff;background:#6666ff!important;">
+                    <p style="color:#ffffff">50 TL ve üzeri kargo bedava !</p>
+                </div>
+            
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="cell col-lg-3">
+                        <div class="content">
+                            <a title="resim" href="/Kitap-Bilgileri/@item.BookID">
+                                <figure>
+                                    <img src="@item.PhotoUrl" alt="resim">
+                                </figure>
+                            </a>
+
+                            <div class="book-name">
+                                <a title="" href="/Kitap-Bilgileri/@item.BookID" class="item-name">
+                                    @{
+                                        var strName = item.BookName;
+                                        if (strName.Length > 22)
+                                        {
+                                            strName = strName.Substring(0, 19) + "...";
+                                        }
+
+                                        <h3 id="trimBook">@strName</h3>
+
+                                    }
+                                </a>
+                                @{
+                                    var strWriterName = item.WriterName;
+                                    if (strWriterName.Length > 22)
+                                    {
+                                        strWriterName = strWriterName.Substring(0, 19) + "...";
+                                    }
+
+                                    <a href="/Yazar/@item.WriterID" id="trimWriter" class="who">@strWriterName</a>
+
+                                }
+                                <div class="media-type">
+                                    @{
+                                        var strPublisher = item.Publisher;
+                                        if (strPublisher.Length > 22)
+                                        {
+                                            strPublisher = strPublisher.Substring(0, 19) + "...";
+                                        }
+
+                                        <span id="trimPublisher" class="who">@strPublisher</span>
+
+                                    }
+                                </div>
+                            </div>
+                            <br />
+
+                            <span class="price">@item.Price TL </span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- Pager -->
+            <div class="container" style="width:867px;">
+                <div class="pager-container">
+                    <ul class="pager">
+                        <li class="next">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

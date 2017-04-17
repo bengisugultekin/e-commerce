@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2DE1A0E9-B2B6-4A70-A5FE-E5D51FF2739D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>E_Ticaret.Entity</RootNamespace>
+    <AssemblyName>E-Ticaret.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201703241842579_InitialCreate.cs" />
+    <Compile Include="Migrations\201703241842579_InitialCreate.Designer.cs">
+      <DependentUpon>201703241842579_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703241850597_key.cs" />
+    <Compile Include="Migrations\201703241850597_key.Designer.cs">
+      <DependentUpon>201703241850597_key.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703251002357_SınıflardaDegisiklik.cs" />
+    <Compile Include="Migrations\201703251002357_SınıflardaDegisiklik.Designer.cs">
+      <DependentUpon>201703251002357_SınıflardaDegisiklik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703251009551_bookClassSildimBiseyler.cs" />
+    <Compile Include="Migrations\201703251009551_bookClassSildimBiseyler.Designer.cs">
+      <DependentUpon>201703251009551_bookClassSildimBiseyler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703271535288_Product.cs" />
+    <Compile Include="Migrations\201703271535288_Product.Designer.cs">
+      <DependentUpon>201703271535288_Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291412181_customer.cs" />
+    <Compile Include="Migrations\201703291412181_customer.Designer.cs">
+      <DependentUpon>201703291412181_customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291454447_newClass.cs" />
+    <Compile Include="Migrations\201703291454447_newClass.Designer.cs">
+      <DependentUpon>201703291454447_newClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291500051_mapping.cs" />
+    <Compile Include="Migrations\201703291500051_mapping.Designer.cs">
+      <DependentUpon>201703291500051_mapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291658214_customerChange.cs" />
+    <Compile Include="Migrations\201703291658214_customerChange.Designer.cs">
+      <DependentUpon>201703291658214_customerChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301431130_custom.cs" />
+    <Compile Include="Migrations\201703301431130_custom.Designer.cs">
+      <DependentUpon>201703301431130_custom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301605216_customAgain.cs" />
+    <Compile Include="Migrations\201703301605216_customAgain.Designer.cs">
+      <DependentUpon>201703301605216_customAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311017191_deneme.cs" />
+    <Compile Include="Migrations\201703311017191_deneme.Designer.cs">
+      <DependentUpon>201703311017191_deneme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311031338_wtf.cs" />
+    <Compile Include="Migrations\201703311031338_wtf.Designer.cs">
+      <DependentUpon>201703311031338_wtf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704121813025_decimalToDouble.cs" />
+    <Compile Include="Migrations\201704121813025_decimalToDouble.Designer.cs">
+      <DependentUpon>201704121813025_decimalToDouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704131308212_dataAnnotationsDeleted.cs" />
+    <Compile Include="Migrations\201704131308212_dataAnnotationsDeleted.Designer.cs">
+      <DependentUpon>201704131308212_dataAnnotationsDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704131442142_dataAnnotationsCreated.cs" />
+    <Compile Include="Migrations\201704131442142_dataAnnotationsCreated.Designer.cs">
+      <DependentUpon>201704131442142_dataAnnotationsCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Custom.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DbConnection\ETicaretContext.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ViewModel\RegisterModel.cs" />
+    <Compile Include="Models\ViewModel\ViewBookForCategory.cs" />
+    <Compile Include="Models\ViewModel\ViewBookForDetails.cs" />
+    <Compile Include="Models\ViewModel\ViewForHome.cs" />
+    <Compile Include="Models\ViewModel\ViewForPayment.cs" />
+    <Compile Include="Models\ViewModel\ViewOrderDetails.cs" />
+    <Compile Include="Models\Writer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703241842579_InitialCreate.resx">
+      <DependentUpon>201703241842579_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241850597_key.resx">
+      <DependentUpon>201703241850597_key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703251002357_SınıflardaDegisiklik.resx">
+      <DependentUpon>201703251002357_SınıflardaDegisiklik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703251009551_bookClassSildimBiseyler.resx">
+      <DependentUpon>201703251009551_bookClassSildimBiseyler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703271535288_Product.resx">
+      <DependentUpon>201703271535288_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291412181_customer.resx">
+      <DependentUpon>201703291412181_customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291454447_newClass.resx">
+      <DependentUpon>201703291454447_newClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291500051_mapping.resx">
+      <DependentUpon>201703291500051_mapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291658214_customerChange.resx">
+      <DependentUpon>201703291658214_customerChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301431130_custom.resx">
+      <DependentUpon>201703301431130_custom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301605216_customAgain.resx">
+      <DependentUpon>201703301605216_customAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311017191_deneme.resx">
+      <DependentUpon>201703311017191_deneme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311031338_wtf.resx">
+      <DependentUpon>201703311031338_wtf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704121813025_decimalToDouble.resx">
+      <DependentUpon>201704121813025_decimalToDouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704131308212_dataAnnotationsDeleted.resx">
+      <DependentUpon>201704131308212_dataAnnotationsDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704131442142_dataAnnotationsCreated.resx">
+      <DependentUpon>201704131442142_dataAnnotationsCreated.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,86 @@
+﻿@model E_Ticaret.Entity.Models.Customer
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    input[type=email] {
+
+        border: solid 1px #ebebeb;
+        box-shadow: 0 1px 1px rgba(80, 80, 80, 0.1);
+        border-radius: 2px;        
+        width: 100%;
+        min-height: 48px;
+        display: block;
+        position: relative;
+        line-height: 45px;
+        padding: 0 10px;
+    }
+
+        input[type=email]:focus {
+            border-color: #d1d1d1;
+        }
+</style>
+
+<section class="sign-up">
+    <div class="container">
+
+        <h2>Üye Ol</h2>
+        <hr>
+        <div class="summary">
+            <p>Buradan oluşturacağınız üyelik kaydı ile tüm Lila Kitapevi uygulamalarına giriş yapabilirsiniz.</p>
+            <p>Bilgilerinizi girerek üye olun.</p>
+        </div>
+        <div class="register-content">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary("",new { @class = "text-danger"})
+                <p class="text-danger">@ViewBag.ValidationMessage</p>
+
+                <div class="half">
+                    <div class="form-row">
+                        <label for="name">Ad *</label>
+                        <input type="text" name="Name" autocomplete="off" >
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <label for="name">Soyad *</label>
+                        <input type="text" name="Surname" autocomplete="off">
+                       
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <label for="mobile">Cep Telefonu</label>
+                        <input type="tel" name="Phone" class="form-control" placeholder="5XXXXXXXXX" autocomplete="off">
+                        
+                    </div>
+                </div>
+
+                <div class="half">
+                    <div class="form-row">
+                        <label for="e-mail">E-posta Adresiniz *</label>
+                        <input type="email" maxlength="60" name="Email" autocomplete="off">
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <label for="password">Parola *</label>
+                        <input type="password" name="Password" autocomplete="off">
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <label for="address">Adres *</label>
+                        <input type="text" maxlength="100" name="Address" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="full">
+                    <input class="btn green btn-arrow-login" type="submit" value="ÜYE OL" />
+                    @*<a href="" class="btn green btn-arrow-login" id="btnAddNewCustomer" title="KAYDET">ÜYE OL</a>*@
+                </div>
+            }
+        </div>
+    </div>
+</section>
